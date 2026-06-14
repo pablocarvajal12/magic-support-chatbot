@@ -43,6 +43,12 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
+\`\`\`powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+
 cp .env.example .env
 # editar .env y añadir GROQ_API_KEY
 \`\`\`

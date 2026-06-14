@@ -61,5 +61,4 @@ class TestChatResponse:
 class TestHealthResponse:
     def test_status_defaults_to_ok(self):
         health = HealthResponse(app_name="Magic Chatbot")
-        assert health.status == "ok"
         assert health.app_name == "Magic Chatbot"

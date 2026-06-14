@@ -1,0 +1,21 @@
+# Entornos
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Vector store persistido
+chroma_db/
+
+# Datos generados
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/

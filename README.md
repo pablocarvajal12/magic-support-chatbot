@@ -58,8 +58,8 @@ cp .env.example .env
 
 ### Backend (FastAPI)
 
-\`\`\`bash
-uvicorn app.main:app --reload
+\`\`\`powershell
+uvicorn src.main:app
 \`\`\`
 
 La primera vez, el backend indexará `data/magic_rules.pdf` en Chroma
@@ -68,8 +68,8 @@ disco (patrón load-or-create, ver documento de arquitectura).
 
 ### Frontend (Streamlit)
 
-\`\`\`bash
-streamlit run frontend/streamlit_app.py
+\`\`\`powershell
+streamlit run frontend/streamlit.py
 \`\`\`
 
 ## Tests
@@ -86,13 +86,34 @@ mockeadas; los tests no requieren `GROQ_API_KEY` real ni acceso a red.
 - `POST /api/v1/chat` — endpoint conversacional único.
 
   Request:
-  \`\`\`json
-  { "session_id": "uuid-o-null", "message": "¿Qué fases tiene un turno?" }
-  \`\`\`
+{
+  "session_id": "8fa21b44-2391-4cfd-b6a8-a3f1146522ef",
+  "response": "Al comienzo de la partida, cada jugador roba una mano inicial de siete cartas (Regla 103.4).",
+  "sources": [
+    "Section 103.4 - Magic Comprehensive Rules.pdf"
+  ]
+}
 
   Response:
-  \`\`\`json
-  { "session_id": "uuid", "response": "...", "sources": ["Reglamento (pág. 12)"] }
-  \`\`\`
+{
+  "session_id": "8fa21b44-2391-4cfd-b6a8-a3f1146522ef",
+  "response": "Al comienzo de la partida, cada jugador roba una mano inicial de siete cartas (Regla 103.4).",
+  "sources": [
+    "Section 103.4 - Magic Comprehensive Rules.pdf"
+  ]
+}
+
+## Ejemplos desde la interfaz
+. Ejemplo desde la Interfaz Web (Streamlit)
+
+Una vez abierta la interfaz, puedes interactuar de forma natural utilizando consultas complejas de juego:
+
+    Búsqueda de cartas (API externa): Busca la carta llamada Black Lotus y muéstrame su texto.
+
+    Creación de cartas personalizadas (JSON Creator): Diseña una carta de criatura dragón roja legendaria que cueste 5 manás.
+
+    Consulta de reglas (RAG): ¿Qué ocurre si ataco con una criatura con dañar primero y mi oponente bloquea con una normal?
+
+
 
 - `GET /api/v1/health` — health check.

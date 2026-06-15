@@ -9,7 +9,7 @@ import logging
 from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
-from src.api.schemas.chat import ChatRequest, ChatResponse, HealthResponse
+from src.schemas.chat import ChatRequest, ChatResponse, HealthResponse
 from src.config.config import Settings, get_settings
 from src.services.chat_service import ChatService
 

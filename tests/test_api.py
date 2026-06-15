@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import pytest
 from fastapi.testclient import TestClient
-from src.app.main import app
+from src.main import app
 from src.config.config import get_settings
 
 

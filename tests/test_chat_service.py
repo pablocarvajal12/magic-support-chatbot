@@ -8,7 +8,7 @@ import pytest
 from langchain_core.documents import Document
 from src.config.config import Settings
 from src.services.chat_service import ChatService
-
+from langchain.agents import AgentExecutor
 
 # =====================================================================
 # CONFIGURACIÓN DE ENTORNO DE PRUEBAS CONTROLADO

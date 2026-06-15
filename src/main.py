@@ -11,6 +11,8 @@ from src.routers.chat import router as chat_router
 from src.services.rag_service import RAGService
 from src.services.card_service import CardService
 from src.services.chat_service import ChatService
+import time
+from fastapi import Request
 
 # Configuración básica de logs de la aplicación
 settings = get_settings()
@@ -70,6 +72,34 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.middleware("http")
+async def add_latency_logging(request: Request, call_next):
+    """
+    Intercepta las peticiones HTTP entrantes para calcular y registrar 
+    el tiempo exacto de procesamiento del servidor en milisegundos.
+    """
+    start_time = time.time()
+    
+    # Procesar la petición y obtener la respuesta del router
+    response = await call_next(request)
+    
+    # Calcular el tiempo transcurrido
+    process_time_ms = (time.time() - start_time) * 1000
+    
+    # Inyectar la métrica en las cabeceras de la respuesta (muy útil para debuggear)
+    response.headers["X-Process-Time-Ms"] = f"{process_time_ms:.2f}"
+    
+    # Imprimir en la consola con el formato de logs del sistema
+    logger.info(
+        "MÉTRICA INFRAESTRUCTURA — [%s] %s | Estado: %d | Latencia: %.2f ms",
+        request.method,
+        request.url.path,
+        response.status_code,
+        process_time_ms
+    )
+    
+    return response
 
 # Registro de rutas modulares bajo el prefijo unificado de la sección 2.6
 app.include_router(chat_router, prefix=settings.api_v1_prefix)

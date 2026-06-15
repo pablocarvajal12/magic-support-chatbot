@@ -14,18 +14,19 @@ arquitectura productiva, monitorización, etc.) está documentado en
 \`\`\`text
 magic-chatbot/
 ├── app/
-│   ├── api/
-│   │   ├── routers/         # Endpoints (chat.py)
-│   │   └── schemas/         # DTOs (ChatRequest, ChatResponse)
+│   ├── routers/         # Endpoints (chat.py)
+│   └── schemas/         # DTOs (ChatRequest, ChatResponse)
 │   ├── services/             # rag_service, card_service, chat_service
 │   ├── agents/                # magic_agent + tools/
-│   ├── core/                  # config.py (Settings), constants.py
+│   ├── config/                  # config.py (Settings), constants.py
 │   └── main.py                # App FastAPI + lifespan
 ├── tests/                     # pytest + mocks
 ├── frontend/
-│   └── streamlit_app.py       # Demo UI (desacoplada vía HTTP)
+│   └── streamlit.py       # Demo UI (desacoplada vía HTTP)
 ├── data/
 │   └── magic_rules.pdf        # Reglamento oficial (no incluido en git)
+├── docs/
+│   └── decisions.md       # Documento de decisiones técnicas
 ├── .env.example
 └── requirements.txt
 \`\`\`

@@ -132,31 +132,21 @@ Para el desarrollo del software he optado por una estructura modular que separa 
 ```text
 magic-chatbot/
 ├── app/
-│   ├── api/
-│   │   ├── middlewares/          # Anonimización (PII) y Rate Limiting
-│   │   ├── routers/
-│   │   │   └── chat.py           # Endpoints y enrutamiento de la API
-│   │   └── schemas/
-│   │       └── chat.py           # Modelos de datos y validación (DTOs)
-│   ├── services/
-│   │   ├── chat_service.py       # Lógica de negocio y hilos de sesión
-│   │   ├── rag_service.py        # Gestión de Chroma DB y lectura de PDF
-│   │   └── card_service.py       # Cliente HTTP para API externa de cartas
-│   ├── agents/
-│   │   ├── magic_agent.py        # Orquestación del Agente Inteligente
-│   │   └── tools/                # Módulos de herramientas del bot
-│   ├── core/
-│   │   ├── config.py             # Configuración centralizada (Pydantic)
-│   │   └── constants.py          # Constantes estáticas globales
-│   └── main.py                   # Inicialización de FastAPI
-├── tests/                        # Pruebas unitarias y de integración
+│   ├── routers/         # Endpoints (chat.py)
+│   └── schemas/         # DTOs (ChatRequest, ChatResponse)
+│   ├── services/             # rag_service, card_service, chat_service
+│   ├── agents/                # magic_agent + tools/
+│   ├── config/                  # config.py (Settings), constants.py
+│   └── main.py                # App FastAPI + lifespan
+├── tests/                     # pytest + mocks
 ├── frontend/
-│   └── streamlit_app.py          # Interfaz gráfica de la demo (Streamlit)
+│   └── streamlit.py       # Demo UI (desacoplada vía HTTP)
 ├── data/
-│   └── magic_rules.pdf           # Reglamento técnico oficial de Magic
-├── .env                          # Variables de entorno locales (Oculto)
-├── .env.example                  # Plantilla pública de credenciales
-└── requirements.txt              # Dependencias del proyecto
+│   └── magic_rules.pdf        # Reglamento oficial (no incluido en git)
+├── docs/
+│   └── decisions.md       # Documento de decisiones técnicas
+├── .env.example
+└── requirements.txt
 ```
 
 # 3. Arquitectura Orientada a Producción

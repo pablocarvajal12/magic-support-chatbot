@@ -14,7 +14,7 @@ ERROR_AGENT_FAILURE = (
     "No he podido procesar tu consulta en este momento. "
     "Un agente humano revisará tu caso."
 )
-SYSTEM_STATUS = "APP is UP | Last commit: feat: add card service"
+SYSTEM_STATUS = "APP is UP | Last commit: feat: add agents tools"
 
 # --- Límites ---
 MAX_MESSAGE_LENGTH = 2000
